@@ -31,7 +31,8 @@ def main_screen():
         {'label': u"Каталог аниме", 'path': plugin.url_for('catalogue', url=urls['all'], type='all')},
         {'label': u"ТОП", 'path': plugin.url_for('catalogue', url=urls['top'], type='top')},
         {'label': u"Завершенные Аниме", 'path': plugin.url_for('catalogue', url=urls['full'], type='full')},
-        {'label': u"Аниме по жанрам", 'path': plugin.url_for('genres')}
+        {'label': u"Аниме по жанрам", 'path': plugin.url_for('genres')},
+        {'label': u"Поиск", 'path': plugin.url_for('search')}
     ]
     return items
 
@@ -63,6 +64,16 @@ def videos(url):
     page = loader.load_page(url)
     listVideos = parser.parseVideos(page)
     return composePlay(listVideos)
+
+@plugin.route('/search/')
+def search():
+    query = plugin.keyboard(heading=u'Поиск'.encode('utf-8', 'replace'))
+    if query is None or len(str(query)) == 0:
+        return
+    url = 'http://online.animedia.tv/search/search&keywords='+query
+    page = loader.load_page(url)
+    listVideos = parser.parseFullDir(page)
+    return compose(listVideos)
 
 def composeGenre(list):
     items = []
