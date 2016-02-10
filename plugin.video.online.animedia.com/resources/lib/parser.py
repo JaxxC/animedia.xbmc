@@ -90,7 +90,7 @@ class AnimediaParser():
         return listVideos
 
     def parseTopDir(self, page):
-        beautifulSoup = BeautifulSoup(page)
+        beautifulSoup = BeautifulSoup(page, "html.parser")
         listVideos = []
         listA = beautifulSoup.findAll('div', attrs={'class': 'widget__most-popular__item widget__item'})
         for listItem in listA:
