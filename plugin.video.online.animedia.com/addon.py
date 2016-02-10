@@ -20,15 +20,19 @@ urls = {
     'new': 'http://online.animedia.tv/new',
     'all': 'http://online.animedia.tv/list',
     'top': 'http://online.animedia.tv',
-    'full': 'http://online.animedia.tv/completed'
+    'full': 'http://online.animedia.tv/completed',
+    'movie': 'http://online.animedia.tv/movie',
+    'dorams': 'http://online.animedia.tv/dorams'
 }
 
 
 @plugin.route('/')
 def main_screen():
     items = [
-        {'label': u"Новые серии", 'path': plugin.url_for('catalogue', url=urls['new'], type='new')},
         {'label': u"Каталог аниме", 'path': plugin.url_for('catalogue', url=urls['all'], type='all')},
+        {'label': u"Каталог фильмов", 'path': plugin.url_for('catalogue', url=urls['movie'], type='movie')},
+        {'label': u"Каталог дорам", 'path': plugin.url_for('catalogue', url=urls['dorams'], type='dorams')},
+        {'label': u"Новые серии", 'path': plugin.url_for('catalogue', url=urls['new'], type='new')},
         {'label': u"ТОП", 'path': plugin.url_for('catalogue', url=urls['top'], type='top')},
         {'label': u"Завершенные Аниме", 'path': plugin.url_for('catalogue', url=urls['full'], type='full')},
         {'label': u"Аниме по жанрам", 'path': plugin.url_for('genres')},

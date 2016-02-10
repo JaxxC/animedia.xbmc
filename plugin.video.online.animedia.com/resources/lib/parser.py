@@ -117,7 +117,7 @@ class AnimediaParser():
                 listVideos.append({
                     'title': a.text + '/' + listItem.find('div', attrs={'class': 'original-title'}).text,
                     'url': a['href'],
-                    'image': img['src']
+                    'image': self.getImgThumb(img['src'])
                 })
 
         return self.nextPageDir(listVideos, beautifulSoup)
@@ -139,7 +139,7 @@ class AnimediaParser():
         beautifulSoup = BeautifulSoup(page, "html.parser")
         listSeasons = []
         seasons = beautifulSoup.findAll('a', attrs={'role': 'tab'})
-        image = beautifulSoup.find('a', attrs={'class': 'zoomLink'}).find('img')
+        image = beautifulSoup.find('div', attrs={'class': 'widget__post-info__poster'}).find('img')
         entry = beautifulSoup.find('ul', attrs={'class': 'media__tabs__nav nav-tabs'})
         entry_id = entry['data-entry_id']
         for season in seasons:
@@ -147,7 +147,7 @@ class AnimediaParser():
                 'title': season.text,
                 'url': 'http://online.animedia.tv/ajax/episodes/' + entry_id + '/' + str(
                     int(season['href'].replace('#tab', '')) + 1),
-                'image': image['src']
+                'image': self.getImgThumb(image['src'])
             })
 
         return listSeasons
@@ -187,3 +187,7 @@ class AnimediaParser():
 
     def getHLS(self, path, hash):
         return path + 'smil:' + hash + '.smil/playlist.m3u8'
+
+    def getImgThumb(self, image):
+        imagename = re.findall('.*/(.*)\.jpg', image)
+        return 'http://online.animedia.tv/images/made/images/uploads/'+imagename[0].replace('_280_385', '')+'_280_385.jpg'
