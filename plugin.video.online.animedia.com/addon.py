@@ -22,7 +22,8 @@ urls = {
     'top': 'http://online.animedia.tv',
     'full': 'http://online.animedia.tv/completed',
     'movie': 'http://online.animedia.tv/movie',
-    'dorams': 'http://online.animedia.tv/dorams'
+    'dorams': 'http://online.animedia.tv/dorams',
+    'search' : 'http://online.animedia.tv/search/search&keywords='
 }
 
 
@@ -74,7 +75,7 @@ def search():
     query = plugin.keyboard(heading=u'Поиск'.encode('utf-8', 'replace'))
     if query is None or len(str(query)) == 0:
         return
-    url = 'http://online.animedia.tv/search/search&keywords='+query
+    url = urls['search']+query
     page = loader.load_page(url)
     listVideos = parser.parseFullDir(page)
     return compose(listVideos)
