@@ -1,8 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import json
-import requests
 import re
 from bs4 import BeautifulSoup
 

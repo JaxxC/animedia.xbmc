@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.online.animedia.com" name="[COLOR=FFFF0000]Ani[/COLOR][COLOR=FF00FF00]Media[/COLOR]" version="0.3" provider-name="Jaxx Colgate">
+<addon id="plugin.video.online.animedia.com" name="[COLOR=FFFF0000]Ani[/COLOR][COLOR=FF00FF00]Media[/COLOR]" version="0.4" provider-name="Jaxx Colgate">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.xbmcswift2" version="2.4.0"/>
+    <import addon="script.module.beautifulsoup4" version="4.3.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="addon.py">
     <provides>video</provides>
